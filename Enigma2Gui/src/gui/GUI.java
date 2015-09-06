@@ -14,6 +14,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import org.apache.log4j.PropertyConfigurator;
 import enigma2gui.Enigma2Gui;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +31,8 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         //fillTree();
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode( "Open proper lamedb file first" );
+        enigmaTree.setModel(new DefaultTreeModel( root ));
     }
 
     /**
@@ -44,10 +47,18 @@ public class GUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         enigmaTree = new javax.swing.JTree();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mFile = new javax.swing.JMenu();
+        mOpen = new javax.swing.JMenuItem();
+        mExit = new javax.swing.JMenuItem();
+        mHelp = new javax.swing.JMenu();
+        mAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("GUI for ENIGMA2");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Open file");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -58,14 +69,56 @@ public class GUI extends javax.swing.JFrame {
         enigmaTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(enigmaTree);
 
+        mFile.setText("File");
+        mFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mFileActionPerformed(evt);
+            }
+        });
+
+        mOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/folder.png"))); // NOI18N
+        mOpen.setText("Open file");
+        mOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mOpenActionPerformed(evt);
+            }
+        });
+        mFile.add(mOpen);
+
+        mExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
+        mExit.setText("Exit");
+        mExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mExitActionPerformed(evt);
+            }
+        });
+        mFile.add(mExit);
+
+        jMenuBar1.add(mFile);
+
+        mHelp.setText("Help");
+
+        mAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        mAbout.setText("About");
+        mAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAboutActionPerformed(evt);
+            }
+        });
+        mHelp.add(mAbout);
+
+        jMenuBar1.add(mHelp);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(37, 37, 37)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -74,54 +127,50 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-          File selectedFile = fileChooser.getSelectedFile();
-          fName = selectedFile.getPath();
-        }
         
-        ArrayList<ArrayList<String>> trans,channels = null;
-        
-        trans =  new LameBDparser(fName).getTransponders();
-        
-        System.out.println(trans.get(0).get(0));
-        System.out.println(trans.get(0).get(1));
-        System.out.println(trans.get(0).get(2));
-        System.out.println(trans.get(0).get(3));
-        System.out.println(trans.get(0).get(4));
-        
-        System.out.println(trans.get(1).get(0));
-        System.out.println(trans.get(2).get(0));
-        
-        channels = new LameBDparser(fName).getChannels();
-        
-        System.out.println(channels.get(0).get(2));
-        System.out.println(channels.get(1).get(2));
-        System.out.println(channels.get(2).get(2));
-        System.out.println(channels.get(300).get(2));
-        
-        enigma2gui = new Enigma2Gui(enigmaTree);
-        enigma2gui.addTranspondersToTree(trans);
-        enigma2gui.addChannellsToTransponders(channels);
-        
-        
-        
+        openFile();
+        logger.info("Opening file by pushing button");
+           
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void fillTree(){
+    private void mFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mFileActionPerformed
+        logger.info("File menu expand");
+    }//GEN-LAST:event_mFileActionPerformed
+
+    private void mExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExitActionPerformed
+        logger.info("Application closed by user");
+        logger.info("Closing");
+        System.exit(0);
+    }//GEN-LAST:event_mExitActionPerformed
+
+    private void mOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOpenActionPerformed
+        openFile();
+        logger.info("Opening file from menu option");
+    }//GEN-LAST:event_mOpenActionPerformed
+
+    private void mAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAboutActionPerformed
+        
+        logger.info("Present information about author");
+        logger.debug("Printing about popup window");
+        
+        String infoMessage = "Application written by Tomasz Gawron";
+        JOptionPane.showMessageDialog(null, infoMessage, "About author", JOptionPane.INFORMATION_MESSAGE);
+    
+    }//GEN-LAST:event_mAboutActionPerformed
+
+   /* public void fillTree(){
         
         DefaultMutableTreeNode root = new DefaultMutableTreeNode( "Deck" );
 
@@ -138,7 +187,29 @@ public class GUI extends javax.swing.JFrame {
         enigmaTree.setModel(treeModel);
         enigmaTree.setRootVisible(false);
         
+    }*/
+    
+    private void openFile(){
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+          File selectedFile = fileChooser.getSelectedFile();
+          fName = selectedFile.getPath();
+        }
+        
+        ArrayList<ArrayList<String>> trans,channels = null;
+        
+        trans =  new LameBDparser(fName).getTransponders();
+        
+                
+        channels = new LameBDparser(fName).getChannels();
+        
+             
+        enigma2gui = new Enigma2Gui(enigmaTree);
+        enigma2gui.addTranspondersToTree(trans);
+        enigma2gui.addChannellsToTransponders(channels);
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -186,6 +257,12 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTree enigmaTree;
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JMenuItem mAbout;
+    public javax.swing.JMenuItem mExit;
+    public javax.swing.JMenu mFile;
+    public javax.swing.JMenu mHelp;
+    public javax.swing.JMenuItem mOpen;
     // End of variables declaration//GEN-END:variables
 }

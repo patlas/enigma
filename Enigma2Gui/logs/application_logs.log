@@ -28,3 +28,31 @@
 2015-09-01 23:24:06 INFO  GUI:176 - GUI has been started
 2015-09-01 23:36:23 INFO  GUI:176 - GUI has been started
 2015-09-01 23:37:22 INFO  GUI:176 - GUI has been started
+2015-09-06 10:46:17 INFO  GUI:176 - GUI has been started
+2015-09-06 11:05:08 INFO  GUI:204 - GUI has been started
+2015-09-06 11:11:51 INFO  GUI:206 - GUI has been started
+2015-09-06 11:28:10 INFO  GUI:228 - GUI has been started
+2015-09-06 11:28:31 DEBUG LameBDparser:34 - Parsing transponders info
+2015-09-06 11:28:31 DEBUG LameBDparser:153 - Parsing channel list
+2015-09-06 11:28:31 DEBUG LameBDparser:33 - Adding transponders to tree model
+2015-09-06 11:28:31 DEBUG LameBDparser:88 - Adding channels to proper transponder list
+2015-09-06 11:28:31 INFO  GUI:151 - Opening file from menu option
+2015-09-06 11:29:14 DEBUG LameBDparser:34 - Parsing transponders info
+2015-09-06 11:29:14 DEBUG LameBDparser:153 - Parsing channel list
+2015-09-06 11:29:15 DEBUG LameBDparser:33 - Adding transponders to tree model
+2015-09-06 11:29:15 DEBUG LameBDparser:88 - Adding channels to proper transponder list
+2015-09-06 11:29:15 INFO  GUI:135 - Opening file by pushing button
+2015-09-06 11:29:52 INFO  GUI:144 - Application closed by user
+2015-09-06 11:29:52 INFO  GUI:145 - Closing
+2015-09-06 11:39:26 INFO  GUI:241 - GUI has been started
+2015-09-06 11:43:15 INFO  GUI:244 - GUI has been started
+2015-09-06 11:43:33 INFO  GUI:153 - Application closed by user
+2015-09-06 11:43:33 INFO  GUI:154 - Closing
+2015-09-06 11:48:45 INFO  GUI:247 - GUI has been started
+2015-09-06 11:48:51 INFO  GUI:165 - Present information about author
+2015-09-06 11:48:51 DEBUG GUI:166 - Printing about popup window
+2015-09-06 11:49:22 DEBUG LameBDparser:34 - Parsing transponders info
+2015-09-06 11:49:22 DEBUG LameBDparser:153 - Parsing channel list
+2015-09-06 11:49:22 DEBUG LameBDparser:33 - Adding transponders to tree model
+2015-09-06 11:49:22 DEBUG LameBDparser:88 - Adding channels to proper transponder list
+2015-09-06 11:49:22 INFO  GUI:144 - Opening file by pushing button

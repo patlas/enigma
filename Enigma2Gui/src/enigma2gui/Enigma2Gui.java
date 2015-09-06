@@ -5,10 +5,12 @@
  */
 package enigma2gui;
 
+import agh.project.util.LameBDparser;
 import java.util.ArrayList;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -18,6 +20,8 @@ public class Enigma2Gui {
 
     private JTree tree = null;
     private final DefaultMutableTreeNode root = new DefaultMutableTreeNode( "Transponders" );
+    final static Logger logger = Logger.getLogger(LameBDparser.class.getName());
+    
     
     public Enigma2Gui(JTree tree){
         this.tree = tree;
@@ -25,6 +29,8 @@ public class Enigma2Gui {
     }
     
     public void addTranspondersToTree(ArrayList<ArrayList<String>> transponders){
+        
+        logger.debug("Adding transponders to tree model");
         
         DefaultMutableTreeNode transponder, parameters, channels = null;
         int index = 0;
@@ -78,6 +84,8 @@ public class Enigma2Gui {
     }
     
     public void addChannellsToTransponders(ArrayList<ArrayList<String>> channels){
+        
+        logger.debug("Adding channels to proper transponder list");
         
         for(ArrayList<String> ch : channels){
             

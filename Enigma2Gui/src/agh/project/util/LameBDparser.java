@@ -5,13 +5,13 @@
  */
 package agh.project.util;
 
-import gui.GUI;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+
 
 /**
  *
@@ -30,6 +30,8 @@ public class LameBDparser {
         int flag = 0;
         byte index = 0;
         String transponderID = null;
+        
+        logger.debug("Parsing transponders info");
         
         ArrayList<ArrayList<String>> transponders = new ArrayList<ArrayList<String>>();
         ArrayList<String> settings = null;
@@ -147,6 +149,8 @@ public ArrayList<ArrayList<String>> getChannels(){
         int flag = 0;
         byte index = 0;
         String transponderID = null;
+        
+        logger.debug("Parsing channel list");
         
         ArrayList<ArrayList<String>> channels = new ArrayList<ArrayList<String>>();
         ArrayList<String> settings = null;
